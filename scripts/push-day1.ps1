@@ -1,7 +1,7 @@
 param(
     [string]$RepoUrl = "https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform.git",
     [string]$GitName = "Harshads-git",
-    [string]$GitEmail = "Harshads-git@users.noreply.github.com"
+    [string]$GitEmail = "183264980+Harshads-git@users.noreply.github.com"
 )
 
 $ErrorActionPreference = "Stop"

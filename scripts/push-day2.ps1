@@ -10,6 +10,8 @@ function Invoke-Git {
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $ProjectRoot
 
+Invoke-Git config user.name "Harshads-git"
+Invoke-Git config user.email "183264980+Harshads-git@users.noreply.github.com"
 Invoke-Git status
 Invoke-Git add README.md app docs scripts tests
 
@@ -24,4 +26,3 @@ Invoke-Git push
 
 Write-Host ""
 Write-Host "Day 2 pushed to GitHub successfully."
-
