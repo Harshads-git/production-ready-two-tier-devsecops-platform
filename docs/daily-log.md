@@ -67,7 +67,7 @@ Date: 2026-05-19
 - The local test script was executed with PowerShell's temporary execution-policy bypass.
 - The local test script now reports a clear setup blocker: Python is not available from PowerShell.
 - Docker is installed, but Docker Desktop was not running, so container checks were not executed.
-- Confirmed Day 2 work was pushed to GitHub.
+- Confirmed Day 2 work was pushed to GitHub by checking GitHub-provided no-reply email.
 
 ### Next Step
 
