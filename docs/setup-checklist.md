@@ -57,11 +57,11 @@ https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform.git
 Run:
 
 ```powershell
+python --version
 py --version
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r app\requirements.txt
-py app\app.py
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\test-local.ps1
+.\scripts\run-local.ps1
 ```
 
 Then open:
@@ -78,3 +78,5 @@ Run:
 docker --version
 docker compose version
 ```
+
+If Docker is installed but the daemon is not running, open Docker Desktop first and wait until it says the engine is running.

@@ -34,3 +34,40 @@ Date: 2026-05-18
 ### Next Step
 
 Run `.\scripts\push-day1.ps1` from normal Windows PowerShell, verify the commit on GitHub, then fix Python availability before beginning Docker setup.
+
+## Day 2 - Local App Test Workflow
+
+Date: 2026-05-19
+
+### What I Built
+
+- Improved the Flask service response to include service name and version metadata.
+- Kept `/health` as a simple machine-readable health check for future Docker and CI/CD use.
+- Added pytest tests for the root endpoint and health endpoint.
+- Added `scripts/run-local.ps1` for starting the app locally.
+- Added `scripts/test-local.ps1` for running the test suite locally.
+- Updated the README and runbook with the new local workflow.
+
+### What I Learned
+
+- A health endpoint is useful because infrastructure tools need a simple way to know whether a service is alive.
+- Tests protect even small services from accidental behavior changes.
+- A clean run script and test script make the project easier for recruiters, teammates, and future automation to understand.
+
+### Evidence
+
+- App code is in `app/app.py`.
+- Tests are in `tests/test_app.py`.
+- Local commands are in `scripts/run-local.ps1` and `scripts/test-local.ps1`.
+- Run instructions are documented in `README.md` and `docs/runbook.md`.
+
+### Verification
+
+- Git state was clean at the start of Day 2.
+- The local test script was executed with PowerShell's temporary execution-policy bypass.
+- The local test script now reports a clear setup blocker: Python is not available from PowerShell.
+- Docker is installed, but Docker Desktop was not running, so container checks were not executed.
+
+### Next Step
+
+Fix Python availability from PowerShell, run `.\scripts\test-local.ps1`, then begin Dockerfile and Docker Compose work.

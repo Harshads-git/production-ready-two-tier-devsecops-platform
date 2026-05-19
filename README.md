@@ -28,30 +28,39 @@ The focus is not only writing application code. The focus is designing and opera
 
 ## Current Status
 
-Day 1 is complete locally:
+Day 2 is complete locally:
 
 - Project structure created
-- Starter Flask service added
+- Starter Flask service added with `/` and `/health` endpoints
+- Basic pytest coverage added
+- Local run and test scripts added
 - Documentation started
 - Daily progress log created
 
-Before the app can be run and pushed to GitHub, complete the setup checklist in [docs/setup-checklist.md](docs/setup-checklist.md).
+Before the app can be run locally, complete the Python setup checklist in [docs/setup-checklist.md](docs/setup-checklist.md).
 
 ## Local Run
 
 From the project root:
 
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r app\requirements.txt
-py app\app.py
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\run-local.ps1
 ```
 
 Then open:
 
 ```text
 http://127.0.0.1:5000
+```
+
+## Local Tests
+
+From the project root:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\test-local.ps1
 ```
 
 ## Planned Architecture
