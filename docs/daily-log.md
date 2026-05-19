@@ -72,3 +72,9 @@ Date: 2026-05-19
 ### Next Step
 
 Fix Python availability from PowerShell, run `.\scripts\test-local.ps1`, then begin Dockerfile and Docker Compose work.
+
+### Contribution Plan Update
+
+- Added a 30-day roadmap to keep the project on schedule.
+- Added a daily two-contribution strategy: one technical commit and one evidence/documentation commit per day.
+- Updated Git helper scripts to use the GitHub-linked no-reply email for future contributions.

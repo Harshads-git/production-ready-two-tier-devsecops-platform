@@ -79,3 +79,8 @@ flowchart LR
 ## Learning Log
 
 Daily progress is tracked in [docs/daily-log.md](docs/daily-log.md).
+
+## Delivery Plan
+
+- 30-day roadmap: [docs/30-day-roadmap.md](docs/30-day-roadmap.md)
+- Daily contribution strategy: [docs/contribution-strategy.md](docs/contribution-strategy.md)
