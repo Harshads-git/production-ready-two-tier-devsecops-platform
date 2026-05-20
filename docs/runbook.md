@@ -28,6 +28,46 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\test-local.ps1
 ```
 
+## Docker Build
+
+Start Docker Desktop before running these commands.
+
+```powershell
+docker build -t two-tier-devsecops-app:day3 .
+```
+
+## Docker Run
+
+```powershell
+docker run --rm -p 5000:5000 --name two-tier-devsecops-app two-tier-devsecops-app:day3
+```
+
+## Docker Compose Run
+
+```powershell
+docker compose up --build
+```
+
+Stop the Compose stack:
+
+```powershell
+docker compose down
+```
+
+## Container Health Check
+
+Open:
+
+```text
+http://127.0.0.1:5000/health
+```
+
+Expected response:
+
+```json
+{"service":"two-tier-devsecops-platform","status":"healthy"}
+```
+
 ## Current Known Setup Gaps
 
 - Python must be available from PowerShell before the Flask service and tests can run.

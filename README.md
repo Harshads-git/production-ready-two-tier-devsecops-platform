@@ -63,6 +63,27 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\test-local.ps1
 ```
 
+## Docker Run
+
+Start Docker Desktop first, then run:
+
+```powershell
+docker build -t two-tier-devsecops-app:day3 .
+docker run --rm -p 5000:5000 --name two-tier-devsecops-app two-tier-devsecops-app:day3
+```
+
+Or use Docker Compose:
+
+```powershell
+docker compose up --build
+```
+
+Health check:
+
+```text
+http://127.0.0.1:5000/health
+```
+
 ## Planned Architecture
 
 ```mermaid

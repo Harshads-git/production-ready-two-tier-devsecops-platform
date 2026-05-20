@@ -78,3 +78,38 @@ Fix Python availability from PowerShell, run `.\scripts\test-local.ps1`, then be
 - Added a 30-day roadmap to keep the project on schedule.
 - Added a daily two-contribution strategy: one technical commit and one evidence/documentation commit per day.
 - Updated Git helper scripts to use the GitHub-linked no-reply email for future contributions.
+
+## Day 3 - Dockerize Flask App
+
+Date: 2026-05-20
+
+### What I Built
+
+- Added a `Dockerfile` for the Flask application.
+- Added `.dockerignore` to keep local files, Git metadata, docs, and tests out of the Docker build context.
+- Added `docker-compose.yml` for a repeatable local app container run.
+- Updated the Flask startup code so the app can bind to `0.0.0.0` inside a container.
+- Added Docker run instructions to the README, runbook, and Docker notes.
+
+### What I Learned
+
+- A containerized Flask app must listen on `0.0.0.0` inside the container so traffic forwarded from the host can reach it.
+- `.dockerignore` reduces build context size and avoids copying secrets or local-only files into images.
+- Running the app as a non-root user inside the image is a basic container security improvement.
+
+### Evidence
+
+- Docker image definition is in `Dockerfile`.
+- Compose service is in `docker-compose.yml`.
+- Docker-specific notes are in `docker/README.md`.
+- Operational commands are in `docs/runbook.md`.
+
+### Verification
+
+- Git state was clean at the start of Day 3.
+- Docker CLI is installed, but Docker Desktop was not running in this environment, so image build could not be executed here.
+- Python is still not visible from the Codex sandbox, so local pytest verification could not be executed here.
+
+### Next Step
+
+Run Docker Desktop, build the app image, verify `/health`, then start Day 4 by adding MySQL to Docker Compose.
