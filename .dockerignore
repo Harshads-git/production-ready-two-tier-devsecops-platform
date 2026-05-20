@@ -1,0 +1,17 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.env
+.env.*
+!.env.example
+docs
+diagrams
+infra
+jenkins
+tests
+scripts
+README.md
+*.log
