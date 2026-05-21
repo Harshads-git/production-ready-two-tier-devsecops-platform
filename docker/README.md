@@ -1,12 +1,12 @@
 # Docker Work
 
-Day 3 adds the first containerized version of the Flask service.
+Day 3 added the first containerized version of the Flask service. Day 4 adds MySQL as the second tier.
 
 ## Files
 
 - `Dockerfile`: builds the Flask application image.
 - `.dockerignore`: keeps local-only files out of the image build context.
-- `docker-compose.yml`: runs the app service with a stable local port.
+- `docker-compose.yml`: runs the app service and MySQL service.
 
 ## Build
 
@@ -26,6 +26,13 @@ docker run --rm -p 5000:5000 --name two-tier-devsecops-app two-tier-devsecops-ap
 docker compose up --build
 ```
 
+Services:
+
+- `app`: Flask application
+- `db`: MySQL 8.4 database
+
+The `db` service uses a named volume called `mysql-data` so database files survive container restarts.
+
 ## Health
 
 ```text
@@ -37,3 +44,15 @@ Expected response:
 ```json
 {"service":"two-tier-devsecops-platform","status":"healthy"}
 ```
+
+## Database Configuration
+
+The app reads database settings from environment variables:
+
+- `DATABASE_HOST`
+- `DATABASE_PORT`
+- `DATABASE_NAME`
+- `DATABASE_USER`
+- `DATABASE_PASSWORD`
+
+In Docker Compose, `DATABASE_HOST` is set to `db`, which is the MySQL service name.

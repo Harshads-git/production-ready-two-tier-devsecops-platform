@@ -28,12 +28,15 @@ The focus is not only writing application code. The focus is designing and opera
 
 ## Current Status
 
-Day 2 is complete locally:
+Day 4 is in progress:
 
 - Project structure created
 - Starter Flask service added with `/` and `/health` endpoints
 - Basic pytest coverage added
 - Local run and test scripts added
+- Flask app containerized with Docker
+- MySQL service added to Docker Compose
+- Database configuration prepared through environment variables
 - Documentation started
 - Daily progress log created
 
@@ -78,6 +81,11 @@ Or use Docker Compose:
 docker compose up --build
 ```
 
+The Compose stack starts:
+
+- `app`: Flask application container
+- `db`: MySQL database container on the internal Docker network
+
 Health check:
 
 ```text
@@ -105,3 +113,4 @@ Daily progress is tracked in [docs/daily-log.md](docs/daily-log.md).
 
 - 30-day roadmap: [docs/30-day-roadmap.md](docs/30-day-roadmap.md)
 - Daily contribution strategy: [docs/contribution-strategy.md](docs/contribution-strategy.md)
+- Daily automation workflow: [docs/daily-automation.md](docs/daily-automation.md)

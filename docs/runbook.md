@@ -54,6 +54,25 @@ Stop the Compose stack:
 docker compose down
 ```
 
+## Docker Compose Services
+
+- `app`: Flask application container, published on host port `5000`.
+- `db`: MySQL database container, reachable by the app as host `db`.
+
+The MySQL container is not published to the host by default. This keeps the database internal to the Docker network and reduces accidental exposure.
+
+## Docker Troubleshooting
+
+If `Invoke-RestMethod http://127.0.0.1:5000/health` says the connection closed unexpectedly, inspect the containers:
+
+```powershell
+docker compose ps
+docker compose logs app
+docker compose logs db
+```
+
+The Flask container starts the app as a module with `python -m app.app` so package imports work correctly inside Docker.
+
 ## Container Health Check
 
 Open:

@@ -114,3 +114,47 @@ Date: 2026-05-20
 ### Next Step
 
 Run Docker Desktop, build the app image, verify `/health`, then start Day 4 by adding MySQL to Docker Compose.
+
+## Day 4 - Add MySQL Compose Service
+
+Date: 2026-05-21
+
+### What I Built
+
+- Added a MySQL 8.4 `db` service to Docker Compose.
+- Added a named Docker volume, `mysql-data`, for database persistence.
+- Configured the Flask app container to read database connection values from environment variables.
+- Added `app/config.py` to centralize database configuration.
+- Added tests for default database config and environment-based overrides.
+- Updated the daily automation workflow for three meaningful contributions per day.
+
+### What I Learned
+
+- Docker Compose service names work as DNS names inside the Compose network, so the app can reach MySQL using host `db`.
+- MySQL should stay internal to the Docker network by default unless there is a specific local debugging need.
+- Named volumes allow database files to survive container restarts.
+- A daily contribution system should separate technical work, verification, and documentation.
+
+### Evidence
+
+- MySQL service is defined in `docker-compose.yml`.
+- Database environment examples are in `.env.example`.
+- Database config code is in `app/config.py`.
+- Config tests are in `tests/test_config.py`.
+- Docker documentation is updated in `docker/README.md` and `docs/runbook.md`.
+
+### Verification
+
+- `docker compose config` should parse the Compose file and show `app`, `db`, and `mysql-data`.
+- `.\scripts\test-local.ps1` should run app and config tests after Python dependencies are installed.
+- Docker Desktop must be running before building the stack.
+- If the app container closes the `/health` connection unexpectedly, check `docker compose logs app`; the container now starts Flask as a Python module so package imports work correctly.
+
+### Next Step
+
+Run the Day 4 verification commands, push three commits, then start Day 5 by connecting Flask to MySQL with a simple database-backed endpoint.
+
+### Automation Update
+
+- Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.
+- Added `docs/daily-automation.md` to document the one-command daily finish process.
