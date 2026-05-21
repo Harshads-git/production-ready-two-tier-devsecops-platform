@@ -21,4 +21,4 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import os, urllib.request; urllib.request.urlopen(f'http://127.0.0.1:{os.getenv(\"APP_PORT\", \"5000\")}/health', timeout=3).read()"
 
-CMD ["python", "app/app.py"]
+CMD ["python", "-m", "app.app"]

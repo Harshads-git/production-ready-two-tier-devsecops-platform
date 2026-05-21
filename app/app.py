@@ -2,11 +2,14 @@ import os
 
 from flask import Flask, jsonify
 
+from app.config import load_database_config
+
 
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config["SERVICE_NAME"] = "two-tier-devsecops-platform"
     app.config["SERVICE_VERSION"] = "0.1.0"
+    app.config["DATABASE"] = load_database_config()
 
     @app.get("/")
     def index():
