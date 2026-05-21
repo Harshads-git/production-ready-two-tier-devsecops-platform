@@ -46,4 +46,4 @@ if (-not (Test-Path -LiteralPath ".venv")) {
 
 & ".\.venv\Scripts\Activate.ps1"
 Invoke-Checked pip install -r app\requirements.txt
-& $Python app\app.py
+& $Python -m app.app
