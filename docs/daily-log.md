@@ -154,6 +154,45 @@ Date: 2026-05-21
 
 Run the Day 4 verification commands, push three commits, then start Day 5 by connecting Flask to MySQL with a simple database-backed endpoint.
 
+## Day 5 - Connect Flask To MySQL
+
+Date: 2026-05-22
+
+### What I Built
+
+- Added PyMySQL as the MySQL client dependency.
+- Added `app/database.py` for opening MySQL connections and querying database metadata.
+- Added `/db/health`, a database-backed endpoint that verifies Flask can reach MySQL.
+- Added tests for database metadata querying and `/db/health` success/failure behavior.
+- Updated Docker image naming to Day 5.
+- Updated documentation with database health verification steps.
+
+### What I Learned
+
+- App health and database health should be separate checks because the app can be alive while the database is down.
+- A database health endpoint should return HTTP `503` when the database is unreachable.
+- Unit tests can mock the database connection so database logic can be tested without needing MySQL running.
+
+### Evidence
+
+- Database connection logic is in `app/database.py`.
+- Database-backed endpoint is in `app/app.py`.
+- Tests are in `tests/test_app.py` and `tests/test_database.py`.
+- Runtime flow is documented in `docs/architecture.md`.
+
+### Verification
+
+- `docker compose config` parsed successfully and showed `app`, `db`, and `mysql-data`.
+- Run `.\scripts\test-local.ps1` for unit tests.
+- Run `docker compose up -d --build`.
+- Check `http://127.0.0.1:5000/health` for app health.
+- Check `http://127.0.0.1:5000/db/health` for database connectivity.
+- Codex could not run Python tests because Python is not visible in the sandbox PATH; run tests from normal PowerShell.
+
+### Next Step
+
+Start Day 6 by adding a real table-backed endpoint and a repeatable database initialization path.
+
 ### Automation Update
 
 - Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.

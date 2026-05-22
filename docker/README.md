@@ -45,6 +45,14 @@ Expected response:
 {"service":"two-tier-devsecops-platform","status":"healthy"}
 ```
 
+## Database Health
+
+```text
+http://127.0.0.1:5000/db/health
+```
+
+This endpoint verifies that Flask can connect to MySQL and run a simple metadata query.
+
 ## Database Configuration
 
 The app reads database settings from environment variables:

@@ -87,6 +87,29 @@ Expected response:
 {"service":"two-tier-devsecops-platform","status":"healthy"}
 ```
 
+## Database Health Check
+
+After the Compose stack is running, open:
+
+```text
+http://127.0.0.1:5000/db/health
+```
+
+Expected successful response shape:
+
+```json
+{
+  "service": "two-tier-devsecops-platform",
+  "status": "healthy",
+  "database": {
+    "database_name": "appdb",
+    "database_version": "8.4.x"
+  }
+}
+```
+
+If MySQL is unreachable, the endpoint returns HTTP `503` with an error type. This is intentional because database health is different from basic app health.
+
 ## Current Known Setup Gaps
 
 - Python must be available from PowerShell before the Flask service and tests can run.

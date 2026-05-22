@@ -92,6 +92,12 @@ Health check:
 http://127.0.0.1:5000/health
 ```
 
+Database connectivity check:
+
+```text
+http://127.0.0.1:5000/db/health
+```
+
 ## Planned Architecture
 
 ```mermaid
