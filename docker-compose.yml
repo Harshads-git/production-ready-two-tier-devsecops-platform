@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: two-tier-devsecops-app:day4
+    image: two-tier-devsecops-app:day5
     container_name: two-tier-devsecops-app
     environment:
       APP_HOST: 0.0.0.0

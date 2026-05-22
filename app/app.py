@@ -3,6 +3,7 @@ import os
 from flask import Flask, jsonify
 
 from app.config import load_database_config
+from app.database import fetch_database_status
 
 
 def create_app() -> Flask:
@@ -28,6 +29,31 @@ def create_app() -> Flask:
             {
                 "service": app.config["SERVICE_NAME"],
                 "status": "healthy",
+            }
+        )
+
+    @app.get("/db/health")
+    def database_health():
+        try:
+            database_status = fetch_database_status(app.config["DATABASE"])
+        except Exception as exc:
+            return (
+                jsonify(
+                    {
+                        "service": app.config["SERVICE_NAME"],
+                        "status": "unhealthy",
+                        "database": "unreachable",
+                        "error": exc.__class__.__name__,
+                    }
+                ),
+                503,
+            )
+
+        return jsonify(
+            {
+                "service": app.config["SERVICE_NAME"],
+                "status": "healthy",
+                "database": database_status,
             }
         )
 
