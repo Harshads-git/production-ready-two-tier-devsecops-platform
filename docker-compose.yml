@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: two-tier-devsecops-app:day5
+    image: two-tier-devsecops-app:day6
     container_name: two-tier-devsecops-app
     environment:
       APP_HOST: 0.0.0.0
@@ -30,6 +30,7 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD:-change-me-locally}
       MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD:-change-root-locally}
     volumes:
+      - ./database/init:/docker-entrypoint-initdb.d:ro
       - mysql-data:/var/lib/mysql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD"]

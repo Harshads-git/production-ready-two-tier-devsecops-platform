@@ -36,3 +36,38 @@ def fetch_database_status(config: DatabaseConfig) -> dict[str, Any]:
         "database_name": row["database_name"],
         "database_version": row["database_version"],
     }
+
+
+def record_visit(config: DatabaseConfig, source: str = "api") -> dict[str, Any]:
+    with open_connection(config) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO app_visits (source)
+                VALUES (%s)
+                """,
+                (source,),
+            )
+            visit_id = cursor.lastrowid
+        connection.commit()
+
+    return {
+        "id": visit_id,
+        "source": source,
+    }
+
+
+def fetch_visit_count(config: DatabaseConfig) -> dict[str, Any]:
+    with open_connection(config) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT COUNT(*) AS total_visits
+                FROM app_visits
+                """
+            )
+            row = cursor.fetchone()
+
+    return {
+        "total_visits": row["total_visits"],
+    }

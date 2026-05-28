@@ -3,7 +3,7 @@ import os
 from flask import Flask, jsonify
 
 from app.config import load_database_config
-from app.database import fetch_database_status
+from app.database import fetch_database_status, fetch_visit_count, record_visit
 
 
 def create_app() -> Flask:
@@ -55,6 +55,57 @@ def create_app() -> Flask:
                 "status": "healthy",
                 "database": database_status,
             }
+        )
+
+    @app.get("/visits")
+    def visits():
+        try:
+            visit_count = fetch_visit_count(app.config["DATABASE"])
+        except Exception as exc:
+            return (
+                jsonify(
+                    {
+                        "service": app.config["SERVICE_NAME"],
+                        "status": "unhealthy",
+                        "error": exc.__class__.__name__,
+                    }
+                ),
+                503,
+            )
+
+        return jsonify(
+            {
+                "service": app.config["SERVICE_NAME"],
+                "status": "healthy",
+                "visits": visit_count,
+            }
+        )
+
+    @app.post("/visits")
+    def create_visit():
+        try:
+            visit = record_visit(app.config["DATABASE"])
+        except Exception as exc:
+            return (
+                jsonify(
+                    {
+                        "service": app.config["SERVICE_NAME"],
+                        "status": "unhealthy",
+                        "error": exc.__class__.__name__,
+                    }
+                ),
+                503,
+            )
+
+        return (
+            jsonify(
+                {
+                    "service": app.config["SERVICE_NAME"],
+                    "status": "created",
+                    "visit": visit,
+                }
+            ),
+            201,
         )
 
     return app
