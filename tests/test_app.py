@@ -72,3 +72,87 @@ def test_database_health_reports_unreachable_database(monkeypatch):
         "database": "unreachable",
         "error": "RuntimeError",
     }
+
+
+def test_visits_endpoint_returns_visit_count(monkeypatch):
+    monkeypatch.setattr(
+        "app.app.fetch_visit_count",
+        lambda config: {"total_visits": 7},
+    )
+
+    app = create_app()
+
+    with app.test_client() as client:
+        response = client.get("/visits")
+
+    assert response.status_code == 200
+    assert response.get_json() == {
+        "service": "two-tier-devsecops-platform",
+        "status": "healthy",
+        "visits": {
+            "total_visits": 7,
+        },
+    }
+
+
+def test_visits_endpoint_reports_database_failure(monkeypatch):
+    def raise_error(config):
+        raise RuntimeError("database unavailable")
+
+    monkeypatch.setattr("app.app.fetch_visit_count", raise_error)
+
+    app = create_app()
+
+    with app.test_client() as client:
+        response = client.get("/visits")
+
+    assert response.status_code == 503
+    assert response.get_json() == {
+        "service": "two-tier-devsecops-platform",
+        "status": "unhealthy",
+        "error": "RuntimeError",
+    }
+
+
+def test_create_visit_endpoint_records_visit(monkeypatch):
+    monkeypatch.setattr(
+        "app.app.record_visit",
+        lambda config: {
+            "id": 42,
+            "source": "api",
+        },
+    )
+
+    app = create_app()
+
+    with app.test_client() as client:
+        response = client.post("/visits")
+
+    assert response.status_code == 201
+    assert response.get_json() == {
+        "service": "two-tier-devsecops-platform",
+        "status": "created",
+        "visit": {
+            "id": 42,
+            "source": "api",
+        },
+    }
+
+
+def test_create_visit_endpoint_reports_database_failure(monkeypatch):
+    def raise_error(config):
+        raise RuntimeError("database unavailable")
+
+    monkeypatch.setattr("app.app.record_visit", raise_error)
+
+    app = create_app()
+
+    with app.test_client() as client:
+        response = client.post("/visits")
+
+    assert response.status_code == 503
+    assert response.get_json() == {
+        "service": "two-tier-devsecops-platform",
+        "status": "unhealthy",
+        "error": "RuntimeError",
+    }
