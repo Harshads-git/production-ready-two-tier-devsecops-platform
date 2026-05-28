@@ -53,6 +53,29 @@ http://127.0.0.1:5000/db/health
 
 This endpoint verifies that Flask can connect to MySQL and run a simple metadata query.
 
+## Database Initialization
+
+The MySQL container loads schema files from:
+
+```text
+database/init/
+```
+
+Current schema file:
+
+```text
+database/init/001_schema.sql
+```
+
+It creates the `app_visits` table used by the visit API.
+
+Reset local database state:
+
+```powershell
+docker compose down -v
+docker compose up -d --build
+```
+
 ## Database Configuration
 
 The app reads database settings from environment variables:

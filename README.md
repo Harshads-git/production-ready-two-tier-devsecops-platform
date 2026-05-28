@@ -98,6 +98,13 @@ Database connectivity check:
 http://127.0.0.1:5000/db/health
 ```
 
+Visit API:
+
+```powershell
+Invoke-RestMethod -Method Post http://127.0.0.1:5000/visits
+Invoke-RestMethod http://127.0.0.1:5000/visits
+```
+
 ## Planned Architecture
 
 ```mermaid

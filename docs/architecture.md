@@ -27,6 +27,22 @@ sequenceDiagram
     Flask-->>User: JSON health response
 ```
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant Flask as Flask App
+    participant MySQL as MySQL Container
+
+    User->>Flask: POST /visits
+    Flask->>MySQL: INSERT INTO app_visits
+    MySQL-->>Flask: visit id
+    Flask-->>User: created visit response
+    User->>Flask: GET /visits
+    Flask->>MySQL: SELECT COUNT(*)
+    MySQL-->>Flask: total visit count
+    Flask-->>User: visit count response
+```
+
 ## Early Design Decisions
 
 - Keep application code small so the main learning focus stays on infrastructure.
@@ -34,6 +50,7 @@ sequenceDiagram
 - Use environment variables for configuration, but never commit real secrets.
 - Document architecture decisions as the project grows.
 - Keep app health and database health as separate endpoints so failures are easier to diagnose.
+- Keep schema initialization in a versioned SQL file so local environments can be recreated consistently.
 
 ## Future Decisions To Make
 

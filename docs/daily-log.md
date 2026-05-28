@@ -193,6 +193,46 @@ Date: 2026-05-22
 
 Start Day 6 by adding a real table-backed endpoint and a repeatable database initialization path.
 
+## Day 6 - Add Table-Backed Visit API
+
+Date: 2026-05-28
+
+### What I Built
+
+- Added `database/init/001_schema.sql` so MySQL can initialize the `app_visits` table automatically.
+- Mounted the database initialization directory into the MySQL container.
+- Added database functions for recording visits and reading total visit count.
+- Added `POST /visits` to insert a visit row.
+- Added `GET /visits` to read the total number of visits.
+- Updated tests for database insert, commit, count, and API success/failure behavior.
+
+### What I Learned
+
+- MySQL initialization files run when a new database volume is created.
+- A named volume preserves state, so schema changes may require `docker compose down -v` in local development.
+- A table-backed endpoint proves real app-to-database behavior beyond a basic connectivity check.
+- Separating insert and read endpoints makes behavior easier to test and reason about.
+
+### Evidence
+
+- Schema file is in `database/init/001_schema.sql`.
+- Database logic is in `app/database.py`.
+- API routes are in `app/app.py`.
+- Tests are in `tests/test_app.py` and `tests/test_database.py`.
+- Operational steps are documented in `docs/runbook.md`.
+
+### Verification
+
+- `.\scripts\test-local.ps1` passed with 13 tests.
+- `docker compose config` parsed successfully and showed the Day 6 app image plus the MySQL schema mount.
+- Live Docker runtime verification could not run because Docker Desktop's Linux engine was not running.
+- When Docker Desktop is running, use `docker compose down -v` if the old database volume exists, then run `docker compose up -d --build`.
+- Check `POST /visits` and `GET /visits`.
+
+### Next Step
+
+Start Day 7 by adding container reliability checks, restart behavior notes, and a clean Week 1 review.
+
 ### Automation Update
 
 - Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.

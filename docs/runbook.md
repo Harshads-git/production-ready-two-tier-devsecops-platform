@@ -110,6 +110,35 @@ Expected successful response shape:
 
 If MySQL is unreachable, the endpoint returns HTTP `503` with an error type. This is intentional because database health is different from basic app health.
 
+## Table-Backed Visit API
+
+Record a visit:
+
+```powershell
+Invoke-RestMethod -Method Post http://127.0.0.1:5000/visits
+```
+
+Read total visits:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:5000/visits
+```
+
+The `app_visits` table is created automatically from:
+
+```text
+database/init/001_schema.sql
+```
+
+MySQL only runs initialization files when the database volume is first created. To test schema changes from scratch during local development:
+
+```powershell
+docker compose down -v
+docker compose up -d --build
+```
+
+Use `docker compose down -v` carefully because it deletes the local MySQL volume.
+
 ## Current Known Setup Gaps
 
 - Python must be available from PowerShell before the Flask service and tests can run.
