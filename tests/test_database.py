@@ -26,7 +26,8 @@ class FakeCursor:
 
 
 class FakeConnection:
-    committed = False
+    def __init__(self):
+        self.commit_count = 0
 
     def __enter__(self):
         return self
@@ -38,7 +39,7 @@ class FakeConnection:
         return FakeCursor()
 
     def commit(self):
-        self.committed = True
+        self.commit_count += 1
 
 
 def make_config():
@@ -76,7 +77,7 @@ def test_record_visit_inserts_visit_and_commits(monkeypatch):
         "id": 42,
         "source": "test",
     }
-    assert connection.committed is True
+    assert connection.commit_count == 2
 
 
 def test_fetch_visit_count_returns_total(monkeypatch):
