@@ -33,6 +33,20 @@ Services:
 
 The `db` service uses a named volume called `mysql-data` so database files survive container restarts.
 
+## Reliability Checks
+
+The Compose stack includes health checks for:
+
+- `app`: calls `/health` inside the Flask container.
+- `db`: uses `mysqladmin ping` inside the MySQL container.
+
+Run the full verification workflow:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-stack.ps1
+```
+
 ## Health
 
 ```text

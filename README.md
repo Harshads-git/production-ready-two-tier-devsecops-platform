@@ -105,6 +105,13 @@ Invoke-RestMethod -Method Post http://127.0.0.1:5000/visits
 Invoke-RestMethod http://127.0.0.1:5000/visits
 ```
 
+Full stack verification:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-stack.ps1
+```
+
 ## Planned Architecture
 
 ```mermaid
@@ -127,3 +134,4 @@ Daily progress is tracked in [docs/daily-log.md](docs/daily-log.md).
 - 30-day roadmap: [docs/30-day-roadmap.md](docs/30-day-roadmap.md)
 - Daily contribution strategy: [docs/contribution-strategy.md](docs/contribution-strategy.md)
 - Daily automation workflow: [docs/daily-automation.md](docs/daily-automation.md)
+- Week 1 review: [docs/week-1-review.md](docs/week-1-review.md)

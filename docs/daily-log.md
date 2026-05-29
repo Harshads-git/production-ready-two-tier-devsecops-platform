@@ -233,6 +233,45 @@ Date: 2026-05-28
 
 Start Day 7 by adding container reliability checks, restart behavior notes, and a clean Week 1 review.
 
+## Day 7 - Week 1 Reliability Review
+
+Date: 2026-05-29
+
+### What I Built
+
+- Added an explicit Docker Compose health check for the Flask app container.
+- Added `scripts/verify-stack.ps1` to validate the full local stack.
+- Added `scripts/diagnose-stack.ps1` to collect Docker diagnostics and logs.
+- Added `docs/week-1-review.md` to summarize Week 1 outcomes, decisions, gaps, and Week 2 focus.
+- Updated README, Docker notes, and runbook with reliability verification commands.
+
+### What I Learned
+
+- A Compose file can define both startup dependencies and ongoing health checks.
+- End-to-end verification should exercise the real user path, not only check that containers are running.
+- A diagnostic script saves time because troubleshooting becomes repeatable instead of improvised.
+- A weekly review turns scattered commits into a clear portfolio story.
+- Existing database volumes can miss new initialization files, so runtime schema checks can make local development more resilient.
+
+### Evidence
+
+- App health check is in `docker-compose.yml`.
+- Full stack verification is in `scripts/verify-stack.ps1`.
+- Diagnostics are in `scripts/diagnose-stack.ps1`.
+- Week 1 summary is in `docs/week-1-review.md`.
+
+### Verification
+
+- `.\scripts\test-local.ps1` passed with 13 tests.
+- `docker compose config` passed.
+- `.\scripts\verify-stack.ps1` passed end to end.
+- Live verification confirmed `/health`, `/db/health`, `POST /visits`, and `GET /visits`.
+- Live verification initially found an old-volume schema issue, so the app now ensures the visit table exists before visit reads and writes.
+
+### Next Step
+
+Start Week 2 by adding GitHub Actions CI for Python tests.
+
 ### Automation Update
 
 - Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.

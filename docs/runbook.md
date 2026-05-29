@@ -61,6 +61,28 @@ docker compose down
 
 The MySQL container is not published to the host by default. This keeps the database internal to the Docker network and reduces accidental exposure.
 
+## Full Stack Verification
+
+Use this after meaningful Docker or database changes:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-stack.ps1
+```
+
+The script validates Compose config, starts the stack, checks `/health`, checks `/db/health`, records a visit, reads the visit count, and prints container status.
+
+## Diagnostics
+
+If stack verification fails:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\diagnose-stack.ps1
+```
+
+This collects Docker version, engine info, Compose config, container status, app logs, and database logs.
+
 ## Docker Troubleshooting
 
 If `Invoke-RestMethod http://127.0.0.1:5000/health` says the connection closed unexpectedly, inspect the containers:
@@ -129,6 +151,8 @@ The `app_visits` table is created automatically from:
 ```text
 database/init/001_schema.sql
 ```
+
+The app also runs an idempotent `CREATE TABLE IF NOT EXISTS` check before visit reads and writes. This protects local development when an older MySQL volume exists from before the schema file was added.
 
 MySQL only runs initialization files when the database volume is first created. To test schema changes from scratch during local development:
 
