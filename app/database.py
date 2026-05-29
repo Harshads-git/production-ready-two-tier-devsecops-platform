@@ -6,6 +6,15 @@ from pymysql.cursors import DictCursor
 from app.config import DatabaseConfig
 
 
+VISIT_SCHEMA_SQL = """
+CREATE TABLE IF NOT EXISTS app_visits (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    source VARCHAR(80) NOT NULL DEFAULT 'api',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
+"""
+
+
 def open_connection(config: DatabaseConfig):
     return pymysql.connect(
         host=config.host,
@@ -38,8 +47,15 @@ def fetch_database_status(config: DatabaseConfig) -> dict[str, Any]:
     }
 
 
+def ensure_visit_schema(connection) -> None:
+    with connection.cursor() as cursor:
+        cursor.execute(VISIT_SCHEMA_SQL)
+    connection.commit()
+
+
 def record_visit(config: DatabaseConfig, source: str = "api") -> dict[str, Any]:
     with open_connection(config) as connection:
+        ensure_visit_schema(connection)
         with connection.cursor() as cursor:
             cursor.execute(
                 """
@@ -59,6 +75,7 @@ def record_visit(config: DatabaseConfig, source: str = "api") -> dict[str, Any]:
 
 def fetch_visit_count(config: DatabaseConfig) -> dict[str, Any]:
     with open_connection(config) as connection:
+        ensure_visit_schema(connection)
         with connection.cursor() as cursor:
             cursor.execute(
                 """
