@@ -47,7 +47,8 @@ $technicalFiles = @(
 
 $verificationFiles = @(
     "tests",
-    "scripts"
+    "scripts",
+    ".github"
 )
 
 $evidenceFiles = @(
