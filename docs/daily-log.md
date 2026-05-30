@@ -272,6 +272,41 @@ Date: 2026-05-29
 
 Start Week 2 by adding GitHub Actions CI for Python tests.
 
+## Day 8 - Add GitHub Actions Python CI
+
+Date: 2026-05-30
+
+### What I Built
+
+- Added `.github/workflows/python-tests.yml`.
+- Configured CI to run on pushes and pull requests targeting `main`.
+- Added Python setup, dependency installation, and pytest execution to the workflow.
+- Added a README status badge for the Python Tests workflow.
+- Added `scripts/verify-ci.ps1` for local CI-style verification.
+- Added CI/CD notes in `docs/ci-cd.md`.
+
+### What I Learned
+
+- CI turns tests into an automated quality gate instead of a manual habit.
+- GitHub Actions workflows should start small and reliable before adding Docker, security scans, and deployment.
+- Running a local CI-equivalent script before pushing reduces avoidable pipeline failures.
+
+### Evidence
+
+- CI workflow is in `.github/workflows/python-tests.yml`.
+- Local CI verification is in `scripts/verify-ci.ps1`.
+- CI documentation is in `docs/ci-cd.md`.
+- README includes a GitHub Actions status badge.
+
+### Verification
+
+- `.\scripts\verify-ci.ps1` passed locally with 13 tests.
+- Push to GitHub and confirm the Python Tests workflow runs on `main`.
+
+### Next Step
+
+Start Day 9 by adding a Docker image build workflow in GitHub Actions.
+
 ### Automation Update
 
 - Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.

@@ -28,6 +28,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\test-local.ps1
 ```
 
+## CI-Style Local Verification
+
+Before pushing CI workflow changes, run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-ci.ps1
+```
+
+This mirrors the first GitHub Actions workflow by installing Python dependencies and running `pytest`.
+
 ## Docker Build
 
 Start Docker Desktop before running these commands.
