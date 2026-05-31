@@ -307,6 +307,44 @@ Date: 2026-05-30
 
 Start Day 9 by adding a Docker image build workflow in GitHub Actions.
 
+## Day 9 - Add Docker Build CI
+
+Date: 2026-05-31
+
+### What I Built
+
+- Added `.github/workflows/docker-build.yml`.
+- Configured Docker image build CI on pushes and pull requests targeting `main`.
+- Added Docker Buildx setup and GitHub Actions layer caching.
+- Kept image publishing disabled until scanning and registry decisions are added.
+- Added `scripts/verify-docker-build.ps1` for local Docker build verification.
+- Added a Docker Build badge to the README.
+
+### What I Learned
+
+- Python test CI and Docker build CI validate different risks.
+- A Docker image should build successfully in a clean CI environment before deployment is automated.
+- It is better to build first, then add scanning, then decide registry publishing.
+- Docker layer caching makes repeated CI builds faster.
+
+### Evidence
+
+- Docker workflow is in `.github/workflows/docker-build.yml`.
+- Local Docker build verification is in `scripts/verify-docker-build.ps1`.
+- CI/CD notes are updated in `docs/ci-cd.md`.
+- README includes a Docker Build badge.
+
+### Verification
+
+- `.\scripts\verify-ci.ps1` passed locally with 13 tests.
+- `.\scripts\verify-docker-build.ps1` stopped correctly because Docker Desktop's Linux engine was not running.
+- Push to GitHub and confirm Docker Build workflow runs on `main`.
+- Local Docker build verification correctly fails if the Docker engine is not running.
+
+### Next Step
+
+Start Day 10 by adding secret hygiene checks and a documented secret-handling policy.
+
 ### Automation Update
 
 - Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.

@@ -36,6 +36,31 @@ It does not yet:
 
 Those checks will be added in later project days.
 
+## Day 9 Docker Build Gate
+
+The second CI workflow is `.github/workflows/docker-build.yml`.
+
+It runs on:
+
+- Pushes to `main`.
+- Pull requests targeting `main`.
+
+## Docker Build Steps
+
+```mermaid
+flowchart LR
+    Push["Push or Pull Request"] --> Checkout["Checkout Repository"]
+    Checkout --> Buildx["Set Up Docker Buildx"]
+    Buildx --> Build["Build Docker Image"]
+    Build --> Cache["Use GitHub Actions Cache"]
+```
+
+## Why This Matters
+
+Python tests prove the code behaves as expected. Docker build CI proves the app can be packaged in a clean environment. Both gates are needed before deployment automation is trustworthy.
+
+The workflow intentionally does not push to a registry yet. Publishing images should come after scanning, tagging strategy, and registry decisions are documented.
+
 ## Local Equivalent
 
 Run:
@@ -45,3 +70,9 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\verify-ci.ps1
 ```
 
+For Docker build verification:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-docker-build.ps1
+```

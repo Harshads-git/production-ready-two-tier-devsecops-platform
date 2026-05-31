@@ -39,6 +39,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 This mirrors the first GitHub Actions workflow by installing Python dependencies and running `pytest`.
 
+## Docker Build Verification
+
+Before pushing Docker workflow changes, start Docker Desktop and run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-docker-build.ps1
+```
+
+This validates the Compose file and builds the Flask application image locally.
+
 ## Docker Build
 
 Start Docker Desktop before running these commands.
