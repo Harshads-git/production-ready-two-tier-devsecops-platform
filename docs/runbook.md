@@ -50,6 +50,15 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 This validates the Compose file and builds the Flask application image locally.
 
+## Secret Hygiene Verification
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-secrets.ps1
+```
+
+Use this before pushing changes that touch configuration, CI, cloud, or deployment files.
+
 ## Docker Build
 
 Start Docker Desktop before running these commands.

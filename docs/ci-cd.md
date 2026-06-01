@@ -76,3 +76,9 @@ For Docker build verification:
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\verify-docker-build.ps1
 ```
+
+## Day 10 Secret Scan Gate
+
+The third CI workflow is `.github/workflows/secret-scan.yml`.
+
+It runs Gitleaks on pushes and pull requests targeting `main`. This helps catch accidentally committed API keys, private keys, tokens, and other secret-like values before they become operational risk.

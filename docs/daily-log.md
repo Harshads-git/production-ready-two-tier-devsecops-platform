@@ -345,6 +345,33 @@ Date: 2026-05-31
 
 Start Day 10 by adding secret hygiene checks and a documented secret-handling policy.
 
+## Day 10 - Add Secret Hygiene Checks
+
+Date: 2026-06-01
+
+### What I Built
+
+- Added Gitleaks secret scanning through GitHub Actions.
+- Added `.gitleaks.toml` with placeholder allowlisting.
+- Added `scripts/verify-secrets.ps1` for local secret hygiene checks.
+- Added `docs/secret-management.md` as the project secret policy.
+- Added a Secret Scan badge to the README.
+
+### What I Learned
+
+- Secret scanning is a preventive DevSecOps control.
+- Example credentials must be clearly fake and allowlisted intentionally.
+- If a real secret leaks, rotation matters more than simply deleting the file.
+
+### Verification
+
+- Run `.\scripts\verify-secrets.ps1` locally.
+- Push to GitHub and confirm the Secret Scan workflow runs on `main`.
+
+### Next Step
+
+Start Day 11 by adding dependency and container vulnerability scanning.
+
 ### Automation Update
 
 - Added `scripts/finish-day.ps1` to make the daily two-commit workflow easier.
