@@ -1,0 +1,12 @@
+title = "Two-Tier DevSecOps Platform Secret Scan"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Allow documented placeholder secrets"
+regexes = [
+  '''change-me-locally''',
+  '''change-root-locally'''
+]
+
