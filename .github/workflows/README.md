@@ -26,3 +26,16 @@ The workflow:
 - Does not push the image to a registry yet.
 
 This is the second CI quality gate. It proves that the application image can be built in a clean CI environment.
+
+## Vulnerability Scan
+
+`vulnerability-scan.yml` runs on pushes and pull requests targeting `main`.
+
+The workflow:
+
+- Runs a Trivy filesystem scan for dependency and repository vulnerabilities.
+- Builds the Docker image locally in CI.
+- Runs a Trivy image scan against the built image.
+- Uploads SARIF results to GitHub code scanning.
+
+This is the fourth CI quality gate. It checks for high and critical vulnerabilities before deployment automation is added.
