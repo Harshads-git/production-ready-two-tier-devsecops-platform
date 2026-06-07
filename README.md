@@ -2,6 +2,7 @@
 
 [![Python Tests](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/python-tests.yml/badge.svg)](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/python-tests.yml)
 [![Docker Build](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/docker-build.yml/badge.svg)](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/docker-build.yml)
+[![Vulnerability Scan](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/vulnerability-scan.yml/badge.svg)](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/vulnerability-scan.yml)
 [![Secret Scan](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/secret-scan.yml)
 
 This is my independent portfolio project for learning AI-resilient cloud, DevOps, and systems design skills. The project starts as a simple two-tier Flask and MySQL application, then grows into a secure, automated, observable, and resilient cloud deployment.
@@ -128,6 +129,13 @@ Docker build verification:
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\verify-docker-build.ps1
+```
+
+Vulnerability verification:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-vulnerabilities.ps1
 ```
 
 Secret hygiene verification:

@@ -50,6 +50,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 This validates the Compose file and builds the Flask application image locally.
 
+## Vulnerability Verification
+
+If Trivy is installed locally, run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-vulnerabilities.ps1
+```
+
+This runs a high/critical filesystem scan, builds the Docker image, and scans the image. If Trivy is not installed locally, the GitHub Actions workflow still performs the scan in CI.
+
 ## Secret Hygiene Verification
 
 ```powershell

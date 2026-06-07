@@ -345,6 +345,44 @@ Date: 2026-05-31
 
 Start Day 10 by adding secret hygiene checks and a documented secret-handling policy.
 
+## Day 11 - Add Vulnerability Scanning
+
+Date: 2026-06-07
+
+### What I Built
+
+- Added `.github/workflows/vulnerability-scan.yml`.
+- Added Trivy filesystem scanning for repository and dependency vulnerabilities.
+- Added Trivy Docker image scanning after a CI image build.
+- Configured SARIF upload for GitHub code scanning.
+- Added `scripts/verify-vulnerabilities.ps1` for local vulnerability verification.
+- Updated security, CI/CD, runbook, and README docs.
+
+### What I Learned
+
+- Secret scanning and vulnerability scanning solve different security problems.
+- Filesystem scanning catches dependency and repository issues.
+- Image scanning catches operating system package and container-layer issues.
+- High and critical findings should block deployment decisions until reviewed.
+
+### Evidence
+
+- Vulnerability workflow is in `.github/workflows/vulnerability-scan.yml`.
+- Local vulnerability helper is in `scripts/verify-vulnerabilities.ps1`.
+- Security process is documented in `docs/security.md`.
+- CI/CD process is documented in `docs/ci-cd.md`.
+
+### Verification
+
+- `.\scripts\verify-ci.ps1` passed locally with 13 tests.
+- `.\scripts\verify-vulnerabilities.ps1` correctly reported that Trivy is not installed locally.
+- The GitHub Actions workflow will run Trivy in CI after push.
+- Push to GitHub and confirm Vulnerability Scan workflow runs on `main`.
+
+### Next Step
+
+Start Day 12 by planning Jenkins pipeline stages and how Jenkins fits alongside GitHub Actions.
+
 ## Day 10 - Add Secret Hygiene Checks
 
 Date: 2026-06-01

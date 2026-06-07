@@ -82,3 +82,39 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 The third CI workflow is `.github/workflows/secret-scan.yml`.
 
 It runs Gitleaks on pushes and pull requests targeting `main`. This helps catch accidentally committed API keys, private keys, tokens, and other secret-like values before they become operational risk.
+
+## Day 11 Vulnerability Scan Gate
+
+The fourth CI workflow is `.github/workflows/vulnerability-scan.yml`.
+
+It runs on:
+
+- Pushes to `main`.
+- Pull requests targeting `main`.
+
+## Vulnerability Scan Steps
+
+```mermaid
+flowchart LR
+    Push["Push or Pull Request"] --> Checkout["Checkout Repository"]
+    Checkout --> FsScan["Trivy Filesystem Scan"]
+    Checkout --> Build["Build Docker Image"]
+    Build --> ImageScan["Trivy Image Scan"]
+    FsScan --> Sarif["Upload SARIF"]
+    ImageScan --> Sarif
+```
+
+## Why This Matters
+
+Secret scanning catches credentials. Vulnerability scanning catches known weaknesses in dependencies and container layers. Both are needed before a platform can be treated as deployment-ready.
+
+The workflow currently focuses on high and critical findings. Medium and low findings can be reviewed later as the security process matures.
+
+## Local Vulnerability Scan
+
+If Trivy is installed locally:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-vulnerabilities.ps1
+```
