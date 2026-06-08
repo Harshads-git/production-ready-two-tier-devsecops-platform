@@ -383,6 +383,42 @@ Date: 2026-06-07
 
 Start Day 12 by planning Jenkins pipeline stages and how Jenkins fits alongside GitHub Actions.
 
+## Day 12 - Plan Jenkins Pipeline
+
+Date: 2026-06-08
+
+### What I Built
+
+- Added a Jenkins pipeline design document.
+- Added a Jenkins credential handling plan.
+- Added Jenkins agent requirements and preflight checks.
+- Updated Jenkins README with its role in the project.
+- Updated CI/CD and security docs to explain how Jenkins complements GitHub Actions.
+
+### What I Learned
+
+- Jenkins should not be added just because it is popular; it needs a clear role.
+- GitHub Actions is useful for repository-native quality gates.
+- Jenkins is useful for self-hosted automation, deployment jobs, credential management, and manual approvals.
+- Credential IDs can be documented, but real credential values must stay outside Git.
+
+### Evidence
+
+- Pipeline design is in `jenkins/pipeline-design.md`.
+- Credential plan is in `jenkins/credentials-plan.md`.
+- Agent requirements are in `jenkins/agent-requirements.md`.
+- Jenkins role is documented in `docs/ci-cd.md` and `docs/security.md`.
+
+### Verification
+
+- Run `.\scripts\verify-ci.ps1` for Python tests.
+- Review Jenkins docs for clear stage, credential, and agent requirements.
+- No Jenkins runtime is required yet because Day 12 is planning-focused.
+
+### Next Step
+
+Start Day 13 by adding the first Jenkinsfile with test, Docker build, and security scan stages.
+
 ## Day 10 - Add Secret Hygiene Checks
 
 Date: 2026-06-01

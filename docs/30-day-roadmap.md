@@ -84,6 +84,7 @@ This keeps the GitHub graph active and also proves the project was built with do
 
 - Add Jenkins pipeline design.
 - Document why Jenkins is included and how it differs from GitHub Actions.
+- Document Jenkins credential IDs and agent requirements.
 
 ### Day 13 - Jenkinsfile
 

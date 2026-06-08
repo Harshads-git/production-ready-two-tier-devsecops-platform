@@ -43,3 +43,11 @@ When a high or critical finding appears:
 2. Upgrade the affected dependency or base image when possible.
 3. If no fix exists, document the risk and mitigation.
 4. Avoid publishing or deploying the image until the decision is clear.
+
+## Jenkins Credential Controls
+
+- Jenkins credential values must not be committed to Git.
+- Documentation should use credential IDs only.
+- Deployment credentials should be least privilege.
+- Jenkins logs must not print secret values or full environment dumps.
+- Manual approval should gate deployment stages until cloud access is ready.

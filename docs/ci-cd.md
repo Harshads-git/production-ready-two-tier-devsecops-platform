@@ -118,3 +118,40 @@ If Trivy is installed locally:
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\verify-vulnerabilities.ps1
 ```
+
+## Day 12 Jenkins Planning
+
+Jenkins is planned as a self-hosted CI/CD path that complements GitHub Actions.
+
+GitHub Actions currently handles repository-native gates:
+
+- Python tests.
+- Docker image build.
+- Secret scanning.
+- Vulnerability scanning.
+
+Jenkins will focus on:
+
+- Self-hosted automation.
+- Build agent toolchain management.
+- Jenkins Credentials Manager.
+- Manual deployment approvals.
+- Future EC2 deployment stages.
+
+Jenkins planning docs:
+
+- `jenkins/pipeline-design.md`
+- `jenkins/credentials-plan.md`
+- `jenkins/agent-requirements.md`
+
+## Jenkins Flow
+
+```mermaid
+flowchart LR
+    Source["GitHub Repository"] --> Jenkins["Jenkins Pipeline"]
+    Jenkins --> Test["Tests"]
+    Test --> Build["Docker Build"]
+    Build --> Security["Secret + Vulnerability Checks"]
+    Security --> Approval["Manual Deploy Approval"]
+    Approval --> Target["Future EC2 Target"]
+```
