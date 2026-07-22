@@ -50,6 +50,7 @@ $verificationFiles = @(
     "scripts",
     ".github",
     ".trivyignore"
+    "Jenkinsfile"
 )
 
 $evidenceFiles = @(
