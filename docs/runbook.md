@@ -61,6 +61,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 This runs a high/critical filesystem scan, builds the Docker image, and scans the image. If Trivy is not installed locally, the GitHub Actions workflow still performs the scan in CI.
 
+## Jenkinsfile Verification
+
+Run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-jenkinsfile.ps1
+```
+
+This checks that the first Jenkinsfile contains the expected stages and helper-script references. It is not a replacement for running the pipeline on a Jenkins server.
+
 ## Secret Hygiene Verification
 
 ```powershell

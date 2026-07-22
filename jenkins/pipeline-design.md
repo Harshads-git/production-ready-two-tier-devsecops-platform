@@ -29,14 +29,21 @@ flowchart LR
 
 | Stage | Purpose | Current Status |
 | --- | --- | --- |
-| Checkout | Pull repository source into Jenkins workspace | Planned |
-| Python Tests | Run `pytest` through the project test command | Planned |
-| Docker Build | Build the application image from `Dockerfile` | Planned |
-| Secret Scan | Run secret hygiene verification | Planned |
-| Vulnerability Scan | Run Trivy filesystem and image scans | Planned |
+| Checkout | Pull repository source into Jenkins workspace | Added Day 13 |
+| Preflight | Confirm required tools exist on the agent | Added Day 13 |
+| Python Tests | Run `pytest` through the project test command | Added Day 13 |
+| Docker Build | Build the application image from `Dockerfile` | Added Day 13 |
+| Secret Scan | Run secret hygiene verification | Added Day 13 |
+| Vulnerability Scan | Run Trivy filesystem and image scans | Added Day 13 |
 | Tag Image | Apply a traceable image tag from build metadata | Future |
 | Manual Deploy Approval | Require human approval before deployment | Future |
 | Deploy To Target | Deploy to EC2 or another host | Future |
+
+## Day 13 Implementation
+
+The first `Jenkinsfile` implements the non-deployment stages. It assumes a Windows-based Jenkins agent because the current helper scripts are PowerShell scripts.
+
+Deployment stages remain future work because cloud target details, credentials, rollback behavior, and approval rules are not ready yet.
 
 ## Jenkins vs GitHub Actions
 
@@ -54,4 +61,3 @@ Jenkins is useful for learning:
 ## Design Decision
 
 Jenkins will not replace GitHub Actions. It will provide a second automation path focused on deployment operations and self-hosted CI/CD skills.
-

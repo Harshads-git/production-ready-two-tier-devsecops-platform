@@ -8,6 +8,7 @@ Day 12 is planning-focused. It defines how Jenkins should fit into this project 
 
 ## Files
 
+- `../Jenkinsfile`: initial declarative Jenkins pipeline.
 - `pipeline-design.md`: planned stages and how Jenkins complements GitHub Actions.
 - `credentials-plan.md`: credential IDs, purpose, and handling rules.
 - `agent-requirements.md`: toolchain and access needed by a Jenkins build agent.
@@ -23,3 +24,22 @@ Jenkins will model a self-hosted CI/CD path focused on:
 
 GitHub Actions remains the repository-native CI gate for pushes and pull requests.
 
+## Day 13 Pipeline
+
+The first Jenkinsfile includes:
+
+- Checkout
+- Preflight tool checks
+- Python tests
+- Docker image build
+- Secret scan
+- Vulnerability scan
+
+Deployment is intentionally not included yet. Deployment should be added only after the EC2 target, credentials, and rollback approach are documented.
+
+## Local Jenkinsfile Check
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-jenkinsfile.ps1
+```

@@ -155,3 +155,18 @@ flowchart LR
     Security --> Approval["Manual Deploy Approval"]
     Approval --> Target["Future EC2 Target"]
 ```
+
+## Day 13 Jenkinsfile
+
+The first `Jenkinsfile` implements these non-deployment stages:
+
+- Checkout
+- Preflight
+- Python Tests
+- Docker Build
+- Secret Scan
+- Vulnerability Scan
+
+The Jenkinsfile currently assumes a Windows Jenkins agent because the local verification scripts are PowerShell based.
+
+Deployment is intentionally deferred until the EC2 target, credentials, and rollback process are documented.

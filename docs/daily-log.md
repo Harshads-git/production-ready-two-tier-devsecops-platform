@@ -419,6 +419,41 @@ Date: 2026-06-08
 
 Start Day 13 by adding the first Jenkinsfile with test, Docker build, and security scan stages.
 
+## Day 13 - Add Initial Jenkinsfile
+
+Date: 2026-07-22
+
+### What I Built
+
+- Added the first repo-root `Jenkinsfile`.
+- Added Jenkins stages for checkout, preflight checks, Python tests, Docker build, secret scan, and vulnerability scan.
+- Added `scripts/verify-jenkinsfile.ps1` for local Jenkinsfile structure checks.
+- Updated Jenkins docs, CI/CD notes, and runbook.
+
+### What I Learned
+
+- A Jenkinsfile should begin with safe non-deployment stages before touching servers.
+- Preflight checks make agent problems obvious early.
+- Jenkins pipeline code should call existing project verification scripts instead of duplicating logic.
+- Deployment should wait until credentials, target infrastructure, rollback, and approvals are designed.
+
+### Evidence
+
+- Jenkins pipeline is in `Jenkinsfile`.
+- Jenkinsfile verification helper is in `scripts/verify-jenkinsfile.ps1`.
+- Jenkins documentation is in `jenkins/README.md` and `jenkins/pipeline-design.md`.
+- CI/CD documentation is updated in `docs/ci-cd.md`.
+
+### Verification
+
+- Run `.\scripts\verify-ci.ps1` for Python tests.
+- Run `.\scripts\verify-jenkinsfile.ps1` for Jenkinsfile structure checks.
+- Run the actual Jenkins pipeline later on a configured Jenkins agent.
+
+### Next Step
+
+Start Day 14 by reviewing Week 2 CI/CD and security gates, then polish the pipeline documentation before cloud planning begins.
+
 ## Day 10 - Add Secret Hygiene Checks
 
 Date: 2026-06-01
