@@ -454,6 +454,41 @@ Date: 2026-07-22
 
 Start Day 14 by reviewing Week 2 CI/CD and security gates, then polish the pipeline documentation before cloud planning begins.
 
+## Day 14 - Week 2 CI/CD And Security Review
+
+Date: 2026-07-23
+
+### What I Built
+
+- Added `docs/week-2-review.md` to summarize the CI/CD and security work from Week 2.
+- Added `docs/pipeline-gates.md` to inventory GitHub Actions and Jenkins gates.
+- Added `scripts/verify-week2.ps1` to run the available local Week 2 checks.
+- Updated the README current status so it reflects the actual Day 14 project state.
+- Updated the roadmap to match the current three-contribution daily rule.
+
+### What I Learned
+
+- Weekly reviews make a portfolio project easier to understand because they connect individual commits into a system story.
+- A pipeline gate inventory helps explain what each automation protects against.
+- GitHub Actions and Jenkins can coexist when each tool has a clear purpose.
+- It is better to delay deployment than to deploy without access, rollback, and credential planning.
+
+### Evidence
+
+- Week 2 summary is in `docs/week-2-review.md`.
+- Gate inventory is in `docs/pipeline-gates.md`.
+- Week 2 local verification is in `scripts/verify-week2.ps1`.
+- README, CI/CD docs, runbook, and roadmap are updated.
+
+### Verification
+
+- Run `.\scripts\verify-week2.ps1`.
+- Confirm Python tests, secret hygiene checks, Jenkinsfile structure checks, and Docker Compose config validation pass.
+
+### Next Step
+
+Start Day 15 by documenting AWS deployment architecture, EC2-first scope, cost assumptions, and security group boundaries.
+
 ## Day 10 - Add Secret Hygiene Checks
 
 Date: 2026-06-01

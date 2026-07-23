@@ -1,13 +1,14 @@
 # 30-Day Project Roadmap
 
-Goal: complete a portfolio-grade two-tier DevSecOps platform in 30 days while making at least two meaningful GitHub contributions per day.
+Goal: complete a portfolio-grade two-tier DevSecOps platform in 30 days while making at least three meaningful GitHub contributions per day.
 
 ## Daily Contribution Rule
 
-Each day should produce two useful commits:
+Each day should produce three useful commits:
 
 1. Technical commit: code, infrastructure, test, pipeline, security, monitoring, or deployment work.
-2. Evidence commit: daily log, architecture decision, runbook update, diagram, troubleshooting note, or README improvement.
+2. Verification commit: test, script, config validation, troubleshooting, or quality gate work.
+3. Evidence commit: daily log, architecture decision, runbook update, diagram, troubleshooting note, or README improvement.
 
 This keeps the GitHub graph active and also proves the project was built with documentation and operational thinking.
 

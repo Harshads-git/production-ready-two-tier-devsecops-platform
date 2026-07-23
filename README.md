@@ -33,7 +33,7 @@ The focus is not only writing application code. The focus is designing and opera
 
 ## Current Status
 
-Day 4 is in progress:
+Day 14 is complete:
 
 - Project structure created
 - Starter Flask service added with `/` and `/health` endpoints
@@ -42,6 +42,9 @@ Day 4 is in progress:
 - Flask app containerized with Docker
 - MySQL service added to Docker Compose
 - Database configuration prepared through environment variables
+- Table-backed visit API added
+- GitHub Actions test, Docker build, secret scan, and vulnerability scan workflows added
+- Jenkins pipeline planning and initial Jenkinsfile added
 - Documentation started
 - Daily progress log created
 
@@ -168,3 +171,5 @@ Daily progress is tracked in [docs/daily-log.md](docs/daily-log.md).
 - Daily contribution strategy: [docs/contribution-strategy.md](docs/contribution-strategy.md)
 - Daily automation workflow: [docs/daily-automation.md](docs/daily-automation.md)
 - Week 1 review: [docs/week-1-review.md](docs/week-1-review.md)
+- Week 2 review: [docs/week-2-review.md](docs/week-2-review.md)
+- Pipeline gates: [docs/pipeline-gates.md](docs/pipeline-gates.md)

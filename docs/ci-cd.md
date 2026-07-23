@@ -170,3 +170,17 @@ The first `Jenkinsfile` implements these non-deployment stages:
 The Jenkinsfile currently assumes a Windows Jenkins agent because the local verification scripts are PowerShell based.
 
 Deployment is intentionally deferred until the EC2 target, credentials, and rollback process are documented.
+
+## Day 14 Week 2 Review
+
+Week 2 established the project's first CI/CD and security gate set:
+
+- Python Tests
+- Docker Build
+- Secret Scan
+- Vulnerability Scan
+- Jenkins non-deployment pipeline
+
+The current gate inventory is documented in `docs/pipeline-gates.md`.
+
+The Week 2 summary is documented in `docs/week-2-review.md`.

@@ -72,6 +72,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 This checks that the first Jenkinsfile contains the expected stages and helper-script references. It is not a replacement for running the pipeline on a Jenkins server.
 
+## Week 2 Verification
+
+Run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\verify-week2.ps1
+```
+
+This runs the local checks available before cloud work begins: Python CI verification, secret hygiene verification, Jenkinsfile structure verification, and Docker Compose config validation.
+
 ## Secret Hygiene Verification
 
 ```powershell
