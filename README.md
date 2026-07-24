@@ -5,7 +5,7 @@
 [![Vulnerability Scan](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/vulnerability-scan.yml/badge.svg)](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/vulnerability-scan.yml)
 [![Secret Scan](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/Harshads-git/production-ready-two-tier-devsecops-platform/actions/workflows/secret-scan.yml)
 
-This is my independent portfolio project for learning AI-resilient cloud, DevOps, and systems design skills. The project starts as a simple two-tier Flask and MySQL application, then grows into a secure, automated, observable, and resilient cloud deployment.
+This is my independent portfolio project for learning AI-resilient cloud, DevOps, and systems design skills. It is a 15-day build that turns a small Flask and MySQL app into a documented DevSecOps platform with Docker, CI/CD, security scanning, Jenkins planning, Terraform starter infrastructure, and operations runbooks.
 
 ## Goal
 
@@ -33,7 +33,7 @@ The focus is not only writing application code. The focus is designing and opera
 
 ## Current Status
 
-Day 14 is complete:
+15-day portfolio version complete:
 
 - Project structure created
 - Starter Flask service added with `/` and `/health` endpoints
@@ -45,10 +45,12 @@ Day 14 is complete:
 - Table-backed visit API added
 - GitHub Actions test, Docker build, secret scan, and vulnerability scan workflows added
 - Jenkins pipeline planning and initial Jenkinsfile added
-- Documentation started
-- Daily progress log created
+- AWS EC2 deployment architecture documented
+- Terraform starter added
+- Backup, restore, monitoring, operations, and final verification docs added
+- Daily progress log complete through Day 15
 
-Before the app can be run locally, complete the Python setup checklist in [docs/setup-checklist.md](docs/setup-checklist.md).
+For setup details, see [docs/setup-checklist.md](docs/setup-checklist.md).
 
 ## Local Run
 
@@ -79,14 +81,13 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Start Docker Desktop first, then run:
 
 ```powershell
-docker build -t two-tier-devsecops-app:day3 .
-docker run --rm -p 5000:5000 --name two-tier-devsecops-app two-tier-devsecops-app:day3
+docker compose up -d --build
 ```
 
-Or use Docker Compose:
+Stop the stack:
 
 ```powershell
-docker compose up --build
+docker compose down
 ```
 
 The Compose stack starts:
@@ -141,6 +142,13 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\verify-vulnerabilities.ps1
 ```
 
+Final project verification:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\final-verify.ps1
+```
+
 Secret hygiene verification:
 
 ```powershell
@@ -148,15 +156,14 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\verify-secrets.ps1
 ```
 
-## Planned Architecture
+## Architecture
 
 ```mermaid
 flowchart LR
     User["User"] --> Nginx["Nginx / Reverse Proxy"]
     Nginx --> Flask["Flask App Container"]
     Flask --> MySQL["MySQL Database Container"]
-    CI["CI/CD Pipeline"] --> Registry["Container Registry"]
-    Registry --> Flask
+    CI["GitHub Actions + Jenkins"] --> Flask
     Monitor["Prometheus + Grafana"] --> Flask
     Monitor --> MySQL
 ```
@@ -167,9 +174,13 @@ Daily progress is tracked in [docs/daily-log.md](docs/daily-log.md).
 
 ## Delivery Plan
 
-- 30-day roadmap: [docs/30-day-roadmap.md](docs/30-day-roadmap.md)
+- 15-day roadmap: [docs/15-day-roadmap.md](docs/15-day-roadmap.md)
 - Daily contribution strategy: [docs/contribution-strategy.md](docs/contribution-strategy.md)
 - Daily automation workflow: [docs/daily-automation.md](docs/daily-automation.md)
 - Week 1 review: [docs/week-1-review.md](docs/week-1-review.md)
 - Week 2 review: [docs/week-2-review.md](docs/week-2-review.md)
 - Pipeline gates: [docs/pipeline-gates.md](docs/pipeline-gates.md)
+- AWS deployment plan: [docs/aws-deployment-plan.md](docs/aws-deployment-plan.md)
+- Operations guide: [docs/operations.md](docs/operations.md)
+- Monitoring plan: [docs/monitoring-plan.md](docs/monitoring-plan.md)
+- Final summary: [docs/final-project-summary.md](docs/final-project-summary.md)

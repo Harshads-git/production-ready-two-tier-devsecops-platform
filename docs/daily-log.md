@@ -482,12 +482,52 @@ Date: 2026-07-23
 
 ### Verification
 
-- Run `.\scripts\verify-week2.ps1`.
-- Confirm Python tests, secret hygiene checks, Jenkinsfile structure checks, and Docker Compose config validation pass.
+- `.\scripts\verify-week2.ps1` passed.
+- Python tests, secret hygiene checks, Jenkinsfile structure checks, and Docker Compose config validation passed.
 
 ### Next Step
 
 Start Day 15 by documenting AWS deployment architecture, EC2-first scope, cost assumptions, and security group boundaries.
+
+## Day 15 - Complete 15-Day Portfolio Version
+
+Date: 2026-07-24
+
+### What I Built
+
+- Converted the project roadmap from a 30-day plan to a completed 15-day portfolio roadmap.
+- Added AWS EC2 deployment architecture and security boundary documentation.
+- Added Terraform starter files for an EC2 Docker host and security group.
+- Added backup and restore scripts for the MySQL database.
+- Added operations, monitoring, and final project summary documents.
+- Added `scripts/final-verify.ps1` for final local project verification.
+- Updated the README to reflect the completed 15-day project status.
+
+### What I Learned
+
+- A deadline-driven project can still be honest if unfinished live-cloud work is clearly scoped as planned architecture and Terraform starter.
+- A strong portfolio project should distinguish between implemented, verified, planned, and future work.
+- Infrastructure documentation, backup/restore, monitoring plans, and release checklists are part of DevOps engineering, not decoration.
+
+### Evidence
+
+- 15-day roadmap is in `docs/15-day-roadmap.md`.
+- AWS plan is in `docs/aws-deployment-plan.md`.
+- Terraform starter is in `infra/terraform`.
+- Operations guide is in `docs/operations.md`.
+- Monitoring plan is in `docs/monitoring-plan.md`.
+- Final summary is in `docs/final-project-summary.md`.
+- Final verification script is in `scripts/final-verify.ps1`.
+
+### Verification
+
+- Run `.\scripts\final-verify.ps1`.
+- Confirm GitHub Actions workflows are present for tests, Docker build, secrets, and vulnerability scanning.
+- Confirm the working tree is clean after final commits.
+
+### Final Status
+
+The 15-day portfolio version is complete.
 
 ## Day 10 - Add Secret Hygiene Checks
 

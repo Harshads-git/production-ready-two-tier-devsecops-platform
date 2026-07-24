@@ -83,6 +83,17 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 This runs the local checks available before cloud work begins: Python CI verification, secret hygiene verification, Jenkinsfile structure verification, and Docker Compose config validation.
 
+## Final Verification
+
+Run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\scripts\final-verify.ps1
+```
+
+This runs the final local gate set for the 15-day portfolio version.
+
 ## Secret Hygiene Verification
 
 ```powershell
