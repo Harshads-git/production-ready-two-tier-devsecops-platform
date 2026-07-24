@@ -11,4 +11,7 @@ htmlcov/
 .DS_Store
 Thumbs.db
 *.log
+backups/
+*.sql
+!database/init/*.sql
 
